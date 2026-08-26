@@ -268,9 +268,21 @@ $(function () {
     });
   }
 
+  // $(window).on("resize", function () {
+  //   ScrollTrigger.killAll();
+  //   location.reload();
+  // });
+  let lastWidth = $(window).width();
+
   $(window).on("resize", function () {
-    ScrollTrigger.killAll();
-    location.reload();
+    const currentWidth = $(window).width();
+
+    // 폭이 실제로 바뀐 경우에만 처리 (모바일 주소창에 의한 세로 resize는 무시)
+    if (currentWidth !== lastWidth) {
+      lastWidth = currentWidth;
+      ScrollTrigger.killAll();
+      location.reload();
+    }
   });
 
   // con04 모바일
